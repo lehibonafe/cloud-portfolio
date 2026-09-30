@@ -484,6 +484,10 @@ h1.name em {
     overflow: hidden;
 }
 
+.hero-ctas .btn {
+    border-radius: 0;
+}
+
 .btn::before {
     content: '';
     position: absolute;
