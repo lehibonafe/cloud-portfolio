@@ -9,28 +9,25 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
 
-    # OIDC permissions for AWS credentials
     permissions:
       contents: read
       id-token: write
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Configure AWS credentials using OIDC
-        uses: aws-actions/configure-aws-credentials@v2
+        uses: aws-actions/configure-aws-credentials@v6.3.0
         with:
           role-to-assume: arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/GitHubOIDC
           aws-region: ${{ secrets.AWS_REGION }}
-      
-      - name: Fetch Caller Identity
-        run: | 
-          aws sts get-caller-identity
 
-      - name: Sync to S3
-        run: |
-          aws s3 sync ./ ${{ secrets.S3_BUCKET }} --delete
+      - name: Fetch Caller Identity
+        run: aws sts get-caller-identity
+
+      - name: Sync website to S3
+        run: aws s3 sync ./ s3://${{ secrets.S3_BUCKET }} --delete
 
       - name: Invalidate CloudFront cache
         run: |
