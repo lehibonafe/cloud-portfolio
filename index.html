@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" data-theme="light">
+<html lang="en" data-theme="dark">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -40,7 +40,7 @@
                             <div class="hero-info-text">
                                 <h1 class="name">Lehi Bonafe</h1>
                                 <div class="location">
-                                    
+
                                     <i class="bi bi-geo-alt"></i>
                                     Angeles City,
                                     Philippines
@@ -96,7 +96,6 @@
                                 <button
                                     type="button"
                                     data-theme-btn="light"
-                                    class="active"
                                     title="Light theme"
                                 >
                                     ☀
@@ -104,6 +103,7 @@
                                 <button
                                     type="button"
                                     data-theme-btn="dark"
+                                    class="active"
                                     title="Dark theme"
                                 >
                                     ☾
@@ -209,7 +209,7 @@
                                 <div class="tl-year">2024</div>
                             </div>
                         </li>
-                        
+
                     </ul>
                 </section>
 
@@ -236,7 +236,7 @@
                             <span>HTML</span>
                             <span>CSS</span>
                             <span>MySQL</span>
-                            
+
                         </div>
                     </div>
 
@@ -248,6 +248,8 @@
                             <span>REST APIs</span>
                             <span>Networking</span>
                             <span>Codex</span>
+                            <span>RAG</span>
+                            <span>LLM</span>
                         </div>
                     </div>
 
@@ -256,23 +258,28 @@
                 <section id="projects" class="projects-section reveal">
                             <div class="section-heading">
                                 <h2><i class="bi bi-folder"></i> Projects</h2>
-                                <a
-                                    href="/projects"
-                                    class="view-all"
-                                    >View All <i class="bi bi-caret-right"></i></a
-                                >
+                                <nav class="project-pagination" aria-label="Project pages" hidden>
+                                    <button type="button" class="project-page-control" data-project-target="1" aria-label="Page 1">1</button>
+                                    <button type="button" class="project-page-control" data-project-target="2" aria-label="Page 2">2</button>
+                                    <button type="button" class="project-page-control" data-project-target="3" aria-label="Page 3">3</button>
+                                    <span class="project-pagination-status" data-project-status aria-live="polite"></span>
+                                </nav>
                             </div>
-                            <div class="projects-grid">
+                            <div class="projects-grid projects-list-grid">
+                                <div class="project-page" data-project-page="1">
                                 <a
                                     href="/projects/s3-static-website"
                                     class="project-card"
                                 >
                                     <h3 class="project-name">
-                                        Portfolio
+                                        Cloud Portfolio
                                     </h3>
                                     <p class="project-desc">
-                                        A static website hosted on aws
+                                        A serverless portfolio website hosted on AWS using S3, CloudFront, Route 53, and Lambda for secure, scalable, and high-performance delivery.
                                     </p>
+                                    <div class="project-tags">
+                                        <span>S3</span><span>CloudFront</span><span>Route 53</span><span>Lambda</span>
+                                    </div>
                                 </a>
 
                                 <a
@@ -280,29 +287,42 @@
                                     class="project-card"
                                 >
                                     <h3 class="project-name">
-                                        CI/CD Pipeline for Fargate
+                                        Amazon ECS with CI/CD Pipeline
                                     </h3>
                                     <p class="project-desc">
-                                        End-to-end pipeline for containerized
-                                        workloads — Docker → ECR → ECS rolling
-                                        deploy, all from a git push.
+                                        Deployed a Dockerized app to ECS Fargate with automated CI/CD using GitHub Actions and Amazon ECR.
                                     </p>
+                                    <div class="project-tags">
+                                        <span>Docker</span><span>ECR</span><span>ECS</span><span>Fargate</span><span>GitHub Actions</span>
+                                    </div>
                                 </a>
 
-                                <a
-                                    href="/projects/github-actions-oidc"
-                                    class="project-card"
-                                >
+                                <article class="project-card">
                                     <h3 class="project-name">
-                                        GitHub Actions × AWS via OIDC
+                                        AWS Three-Tier Web Architecture
                                     </h3>
                                     <p class="project-desc">
-                                        Replaced long-lived AWS keys with
-                                        short-lived OIDC tokens and IAM role
-                                        assumption — eliminating credential
-                                        rotation.
+                                        Designed a highly available three-tier AWS architecture using VPC, public and private subnets, EC2, NAT Gateway, ALB, and RDS.
                                     </p>
-                                </a>
+                                    <div class="project-tags">
+                                        <span>VPC</span><span>EC2</span><span>ALB</span><span>RDS</span>
+                                    </div>
+                                </article>
+                                </div>
+
+                                <div class="project-page" data-project-page="2" hidden>
+                                    <article class="project-card project-placeholder">
+                                        <h3 class="project-name">In Progress</h3>
+                                        <p class="project-desc">New project details will be added here.</p>
+                                    </article>
+                                </div>
+
+                                <div class="project-page" data-project-page="3" hidden>
+                                    <article class="project-card project-placeholder">
+                                        <h3 class="project-name">In Progress</h3>
+                                        <p class="project-desc">New project details will be added here.</p>
+                                    </article>
+                                </div>
                             </div>
                         </section>
 
@@ -440,7 +460,7 @@
                             </div>
 
                             <div class="published-icons">
-            
+
                                 <a
                                     href="https://medium.com/@lehivelardebonafe"
                                     target="_blank"
@@ -463,19 +483,6 @@
                                         aria-hidden="true"
                                     ></i>
                                     <span class="published-icon-label">LinkedIn</span>
-                                </a>
-                                <a
-                                    href="https://www.youtube.com/"
-                                    target="_blank"
-                                    rel="noopener"
-                                    class="published-icon"
-                                    title="YouTube"
-                                >
-                                    <i
-                                        class="bi bi-youtube"
-                                        aria-hidden="true"
-                                    ></i>
-                                    <span class="published-icon-label">YouTube</span>
                                 </a>
                             </div>
                         </section>

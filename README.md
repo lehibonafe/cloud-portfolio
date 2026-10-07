@@ -17,8 +17,9 @@ cd s3-cloudfront-portfolio
 Project pages remain HTML objects in S3, but visitors use extensionless URLs:
 
 ```text
-/projects -> /projects/index.html (internal rewrite)
-/projects/ -> /projects (301 redirect)
+/projects -> /#projects (301 redirect)
+/projects/ -> /#projects (301 redirect)
+/projects/index.html -> /#projects (301 redirect)
 /projects/s3-static-website -> /projects/s3-static-website.html (internal rewrite)
 /projects/s3-static-website.html -> /projects/s3-static-website (301 redirect)
 ```

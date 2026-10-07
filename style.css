@@ -255,11 +255,11 @@ body::after {
 }
 
 @keyframes moonGlow {
-    0% { 
+    0% {
         transform: scale(1.05);
         text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
     }
-    100% { 
+    100% {
         transform: scale(1.05);
         text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 0 6px rgba(255, 255, 255, 0.2);
     }
@@ -485,7 +485,7 @@ h1.name em {
 }
 
 .hero-ctas .btn {
-    border-radius: 0;
+    border-radius: 7px;
 }
 
 .btn::before {
@@ -758,6 +758,16 @@ h1.name em {
 .tl-row:last-child {
     border-bottom: none;
 }
+#experience .tl-marker {
+    width: 9px;
+    height: 9px;
+    flex: 0 0 9px;
+    margin-top: 5px;
+    border-radius: 50%;
+    background: var(--text);
+    position: relative;
+    z-index: 1;
+}
 .tl-content {
     flex: 1;
     min-width: 0;
@@ -892,6 +902,14 @@ h1.name em {
 .project-card:focus-visible .project-name {
     color: var(--accent);
 }
+#projects .project-placeholder:hover {
+    transform: none;
+    border-color: transparent;
+    box-shadow: none;
+}
+#projects .project-placeholder:hover .project-name {
+    color: var(--text);
+}
 .project-desc {
     font-size: 12px;
     font-weight: 300;
@@ -899,89 +917,138 @@ h1.name em {
 .project-tags {
     display: flex;
     flex-wrap: wrap;
-    gap: 6px;
+    gap: 5px;
     margin-top: auto;
     padding-top: 4px;
 }
 .project-tags span {
-    font-size: 10px;
+    font-size: 9px;
     font-weight: 500;
     color: var(--text-soft);
     font-family: "Google Sans Flex", sans-serif;
     text-transform: uppercase;
     letter-spacing: 0.08em;
-    padding: 4px 9px;
+    padding: 3px 7px;
     background: var(--bg);
     border: 1px solid var(--border);
     border-radius: var(--radius-pill);
 }
 
-/* Projects index */
-.projects-index-main {
-    width: 100%;
-    min-width: 0;
-    max-width: 960px;
-}
-.projects-index-grid {
+/* Project list cards */
+.projects-list-grid {
     display: flex;
     width: 100%;
     min-width: 0;
     flex-direction: column;
-    gap: 10px;
+    gap: 8px;
 }
-[data-theme="light"] .projects-index-grid .project-card {
+[data-theme="light"] .projects-list-grid .project-card {
     color: var(--accent);
-    border-color: var(--accent);
+    border-color: transparent;
     transform: translateY(-3px);
     box-shadow: var(--shadow);
     outline: none;
 }
-.projects-index-grid .project-card {
+[data-theme="light"] .projects-list-grid .project-card:hover,
+[data-theme="light"] #projects .project-card:hover {
+    border-color: var(--accent);
+}
+[data-theme="light"] #projects .project-placeholder:hover {
+    border-color: transparent;
+}
+[data-theme="light"] .projects-list-grid a.project-card:focus-visible {
+    outline: 2px solid var(--text-muted);
+    outline-offset: 2px;
+}
+.projects-list-grid .project-card {
     display: grid;
     width: 100%;
     min-width: 0;
-    grid-template-columns: auto minmax(0, 1fr);
-    align-items: baseline;
-    column-gap: 16px;
-    row-gap: 8px;
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: 6px;
     min-height: 0;
+    padding: 12px 14px;
 }
-.projects-index-grid .project-card > * {
+.projects-list-grid .project-card > * {
     min-width: 0;
     max-width: 100%;
 }
-.projects-index-grid .project-card > .project-index {
-    grid-column: 1;
-    grid-row: 1;
-    margin: 0;
-}
-.projects-index-grid .project-card > .project-name {
-    grid-column: 2;
-    grid-row: 1;
+.projects-list-grid .project-card > .project-name {
     margin: 0;
     font-size: 14px;
     font-weight: 600;
     line-height: 1.45;
     overflow-wrap: anywhere;
 }
-.projects-index-grid .project-card > .project-desc {
-    grid-column: 2;
+.projects-list-grid .project-card > .project-desc {
     margin: 0;
     color: var(--text-soft);
     line-height: 1.6;
     overflow-wrap: anywhere;
 }
-.projects-index-grid .project-card > .project-tags {
-    grid-column: 2;
+.projects-list-grid .project-card > .project-tags {
     justify-content: flex-start;
-    align-self: stretch;
-    margin: 4px 0 0;
+    margin: 2px 0 0;
     padding: 0;
 }
-.projects-index-grid .project-tags span {
+.projects-list-grid .project-tags span {
     max-width: 100%;
     white-space: normal;
     overflow-wrap: anywhere;
+}
+#projects .project-page {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+#projects .project-page[hidden],
+#projects .project-pagination[hidden] {
+    display: none;
+}
+#projects .project-placeholder {
+    min-height: 120px;
+    align-content: center;
+}
+#projects .section-heading {
+    align-items: center;
+}
+.project-pagination {
+    display: flex;
+    justify-content: flex-end;
+    gap: 6px;
+    margin-left: auto;
+}
+.project-page-control {
+    min-width: 34px;
+    min-height: 34px;
+    padding: 6px 10px;
+    border: 1px solid var(--border);
+    border-radius: 7px;
+    background: var(--bg);
+    color: var(--text-soft);
+    font-size: 11px;
+    font-weight: 600;
+    line-height: 1;
+    transition: border-color 0.2s ease, color 0.2s ease, background-color 0.2s ease;
+}
+.project-page-control:hover:not(:disabled),
+.project-page-control[aria-current="page"] {
+    border-color: var(--accent);
+    background: var(--accent-soft);
+    color: var(--text);
+}
+.project-page-control:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+}
+.project-pagination-status {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
 }
 
 /* ===== EVENTS SLIDER ===== */
@@ -1252,11 +1319,6 @@ footer {
 [data-theme="dark"] .timeline::before {
     background: #1f1f1f;
 }
-[data-theme="dark"] .tl-marker {
-    border-color: #2a2a2a;
-    background: #0f0f0f;
-}
-
 /* ===== PROJECT DOCUMENTATION ===== */
 .doc-header {
     padding: 24px 0 20px;
@@ -1269,6 +1331,9 @@ footer {
     gap: 16px;
 }
 .doc-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
     font-family: "Google Sans Flex", sans-serif;
     font-size: 11px;
     font-weight: 500;
@@ -1276,6 +1341,9 @@ footer {
     letter-spacing: 0.1em;
     color: var(--text-soft);
     transition: color 0.15s;
+}
+.doc-back .bi {
+    font-size: 15px;
 }
 .doc-back:hover {
     color: var(--accent);

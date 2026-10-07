@@ -16,7 +16,7 @@ const buttons = document.querySelectorAll('[data-theme-btn]');
 const stored = (() => {
   try { return localStorage.getItem('theme'); } catch (e) { return null; }
 })();
-const initial = stored || 'light';
+const initial = stored || 'dark';
 applyTheme(initial);
 
 buttons.forEach((b) => {
@@ -27,6 +27,40 @@ function applyTheme(theme) {
   root.setAttribute('data-theme', theme);
   buttons.forEach((b) => b.classList.toggle('active', b.dataset.themeBtn === theme));
   try { localStorage.setItem('theme', theme); } catch (e) {}
+}
+
+// Projects pagination (home page only)
+const projectSection = document.getElementById('projects');
+if (projectSection) {
+  const pages = [...projectSection.querySelectorAll('[data-project-page]')];
+  const pagination = projectSection.querySelector('.project-pagination');
+  const pageButtons = [...(pagination?.querySelectorAll('[data-project-target]') || [])];
+  const status = pagination?.querySelector('[data-project-status]');
+
+  if (pages.length && pagination && status && pageButtons.length === pages.length) {
+    let currentPage = 0;
+
+    function showProjectPage(pageIndex) {
+      if (pageIndex < 0 || pageIndex >= pages.length) return;
+
+      currentPage = pageIndex;
+      pages.forEach((page, index) => { page.hidden = index !== currentPage; });
+      pageButtons.forEach((button) => {
+        if (Number(button.dataset.projectTarget) === currentPage + 1) {
+          button.setAttribute('aria-current', 'page');
+        } else {
+          button.removeAttribute('aria-current');
+        }
+      });
+      status.textContent = `Page ${currentPage + 1} of ${pages.length}`;
+    }
+
+    pageButtons.forEach((button) => {
+      button.addEventListener('click', () => showProjectPage(Number(button.dataset.projectTarget) - 1));
+    });
+    showProjectPage(0);
+    pagination.hidden = false;
+  }
 }
 
 // Events slider (home page only)

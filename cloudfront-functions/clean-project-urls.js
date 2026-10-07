@@ -1,7 +1,7 @@
 /**
  * CloudFront viewer-request function for clean project URLs.
  *
- * Project list: /projects -> /projects/index.html
+ * Former project list URLs: /projects -> /#projects
  * Clean request: /projects/s3-static-website -> S3 object ending in .html
  * Legacy request: /projects/s3-static-website.html -> 301 clean URL
  */
@@ -9,17 +9,13 @@ async function handler(event) {
     var request = event.request;
     var uri = request.uri;
 
-    if (uri === "/projects") {
-        request.uri = "/projects/index.html";
-        return request;
-    }
-
     if (
+        uri === "/projects" ||
         uri === "/projects/" ||
         uri === "/projects/index" ||
         uri === "/projects/index.html"
     ) {
-        return redirectTo("/projects");
+        return redirectTo("/#projects");
     }
 
     if (!uri.startsWith("/projects/")) {
