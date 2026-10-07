@@ -1176,7 +1176,7 @@ h1.name em {
     background: var(--bg);
     color: var(--text);
     font-size: 20px;
-    border-radius: var(--radius-pill);
+    border-radius: var(--radius-md);
     position: relative;
     overflow: hidden;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
