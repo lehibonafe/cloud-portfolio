@@ -986,15 +986,8 @@ h1.name em {
     line-height: 1.6;
     overflow-wrap: anywhere;
 }
-.projects-list-grid .project-card > .project-tags {
-    justify-content: flex-start;
-    margin: 2px 0 0;
-    padding: 0;
-}
-.projects-list-grid .project-tags span {
-    max-width: 100%;
-    white-space: normal;
-    overflow-wrap: anywhere;
+#projects .project-card {
+    margin-block: 2px;
 }
 #projects .project-page {
     display: flex;
