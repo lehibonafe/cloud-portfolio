@@ -27,7 +27,7 @@ jobs:
         run: aws sts get-caller-identity
 
       - name: Sync website to S3
-        run: aws s3 sync ./ s3://${{ secrets.S3_BUCKET }} --delete
+        run: aws s3 sync ./ ${{ secrets.S3_BUCKET }} --delete
 
       - name: Invalidate CloudFront cache
         run: |
