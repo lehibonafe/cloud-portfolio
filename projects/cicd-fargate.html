@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en" data-theme="dark">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta name="description" content="Documentation: CI/CD Pipeline for Fargate — Lehi Bonafe" />
-<title>CI/CD Pipeline for Fargate — Lehi Bonafe</title>
+<meta name="description" content="ECS Fargate CI/CD design with Docker and Amazon ECR — Lehi Bonafe" />
+<title>ECS Fargate CI/CD Design — Lehi Bonafe</title>
 <link rel="canonical" href="https://cloud-lehi.com/projects/cicd-fargate" />
 <script>try{var t=localStorage.getItem("theme");if(t)document.documentElement.setAttribute("data-theme",t);}catch(e){}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -17,25 +17,25 @@
 
 <header class="doc-header">
   <div class="container doc-header-inner">
-    <a href="/" class="doc-back">← Back to portfolio</a>
+    <a href="/" class="doc-back"><i class="bi bi-house" aria-hidden="true"></i> Home</a>
     <div class="theme-toggle" role="group" aria-label="Theme">
-      <button type="button" data-theme-btn="light" class="active" title="Light theme">☀</button>
-      <button type="button" data-theme-btn="dark" title="Dark theme">☾</button>
+      <button type="button" data-theme-btn="light" title="Light theme">☀</button>
+      <button type="button" data-theme-btn="dark" class="active" title="Dark theme">☾</button>
     </div>
   </div>
 </header>
 
 <main class="container doc-main reveal">
   <span class="project-index">03</span>
-  <h1 class="doc-title">CI/CD Pipeline for Fargate</h1>
-  <p class="doc-lead">End-to-end pipeline for containerized workloads: build a Docker image, push to ECR, and roll out a new ECS Fargate task definition on every push to main.</p>
+  <h1 class="doc-title">ECS Fargate CI/CD Design</h1>
+  <p class="doc-lead">Designed a pipeline to build Docker images, push them to Amazon ECR, and roll out ECS service updates.</p>
   <div class="project-tags">
     <span>Docker</span><span>ECR</span><span>ECS</span><span>Fargate</span>
   </div>
 
   <article class="doc-content">
     <h2>Overview</h2>
-    <p>Fargate removes the need to manage EC2 instances for containers. The pipeline focuses on repeatable image builds and controlled ECS service updates with health checks before traffic shifts.</p>
+    <p>Fargate removes the need to manage EC2 instances for containers. This design covers repeatable image builds and controlled ECS service updates with health checks before traffic shifts.</p>
 
     <h2>Pipeline stages</h2>
     <ul>
@@ -45,16 +45,16 @@
     </ul>
 
     <h2>ECS configuration</h2>
-    <p>Task definitions pin CPU, memory, container image URI, logging (CloudWatch), and environment secrets from SSM or Secrets Manager. The service uses a target group behind an ALB for HTTP health checks.</p>
+    <p>A proposed task definition specifies CPU, memory, container image URI, CloudWatch logging, and environment secrets from SSM or Secrets Manager. The service design uses a target group behind an ALB for HTTP health checks.</p>
 
     <h2>Rollback strategy</h2>
     <p>Keep previous task definition revisions. If deployment fails health checks, ECS circuit breaker or a manual rollback reverts to the last known-good revision without rebuilding the image.</p>
 
     <h2>Security</h2>
     <ul>
-      <li>OIDC to AWS — no long-lived keys in CI</li>
-      <li>ECR image scanning on push</li>
-      <li>Task role vs execution role separated for least privilege</li>
+      <li>Use OIDC for AWS credentials instead of long-lived keys in CI</li>
+      <li>Enable ECR image scanning on push</li>
+      <li>Separate task and execution roles for least privilege</li>
     </ul>
   </article>
 

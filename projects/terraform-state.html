@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en" data-theme="dark">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta name="description" content="Documentation: Terraform State Management — Lehi Bonafe" />
-<title>Terraform State Management — Lehi Bonafe</title>
+<meta name="description" content="Terraform remote state design using S3, DynamoDB, and IAM — Lehi Bonafe" />
+<title>Terraform Remote State on AWS — Lehi Bonafe</title>
 <link rel="canonical" href="https://cloud-lehi.com/projects/terraform-state" />
 <script>try{var t=localStorage.getItem("theme");if(t)document.documentElement.setAttribute("data-theme",t);}catch(e){}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -17,20 +17,20 @@
 
 <header class="doc-header">
   <div class="container doc-header-inner">
-    <a href="/" class="doc-back">← Back to portfolio</a>
+    <a href="/" class="doc-back"><i class="bi bi-house" aria-hidden="true"></i> Home</a>
     <div class="theme-toggle" role="group" aria-label="Theme">
-      <button type="button" data-theme-btn="light" class="active" title="Light theme">☀</button>
-      <button type="button" data-theme-btn="dark" title="Dark theme">☾</button>
+      <button type="button" data-theme-btn="light" title="Light theme">☀</button>
+      <button type="button" data-theme-btn="dark" class="active" title="Dark theme">☾</button>
     </div>
   </div>
 </header>
 
 <main class="container doc-main reveal">
   <span class="project-index">04</span>
-  <h1 class="doc-title">Terraform State Management</h1>
-  <p class="doc-lead">Remote backend with S3 for state storage and DynamoDB for locking — teams can run <code>terraform apply</code> safely without overwriting each other's work.</p>
+  <h1 class="doc-title">Terraform Remote State on AWS</h1>
+  <p class="doc-lead">Designed an S3 backend with DynamoDB locking, bucket versioning, and IAM access controls for shared Terraform state.</p>
   <div class="project-tags">
-    <span>Terraform</span><span>S3</span><span>DynamoDB</span><span>IaC</span>
+    <span>Terraform</span><span>S3</span><span>DynamoDB</span><span>IAM</span>
   </div>
 
   <article class="doc-content">
@@ -55,10 +55,10 @@
     </ul>
 
     <h2>CI integration</h2>
-    <p>GitHub Actions runs <code>terraform plan</code> on pull requests and <code>apply</code> on merge, using OIDC to assume a role with state bucket and lock table permissions only.</p>
+    <p>A proposed GitHub Actions workflow would run <code>terraform plan</code> on pull requests and <code>apply</code> on merge, using OIDC to assume a role with state bucket and lock table permissions only.</p>
 
     <h2>Outcomes</h2>
-    <p>Predictable collaboration, audit trail via S3 versions, and infrastructure changes tracked the same way application code is.</p>
+    <p>This design supports shared state, recovery through S3 versions, and infrastructure changes reviewed alongside application code.</p>
   </article>
 
   <div class="doc-footer-links">

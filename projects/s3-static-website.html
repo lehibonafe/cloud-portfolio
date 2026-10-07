@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en" data-theme="dark">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta name="description" content="Documentation: S3 Static Website with CloudFront — Lehi Bonafe" />
-<title>S3 Static Website with CloudFront — Lehi Bonafe</title>
+<meta name="description" content="AWS static portfolio deployment with S3, CloudFront, Route 53, and GitHub Actions — Lehi Bonafe" />
+<title>AWS Static Portfolio Deployment — Lehi Bonafe</title>
 <link rel="canonical" href="https://cloud-lehi.com/projects/s3-static-website" />
 <script>try{var t=localStorage.getItem("theme");if(t)document.documentElement.setAttribute("data-theme",t);}catch(e){}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -17,19 +17,19 @@
 
 <header class="doc-header">
   <div class="container doc-header-inner">
-    <a href="/" class="doc-back">← Back to portfolio</a>
+    <a href="/" class="doc-back"><i class="bi bi-house" aria-hidden="true"></i> Home</a>
     <div class="theme-toggle" role="group" aria-label="Theme">
-      <button type="button" data-theme-btn="light" class="active" title="Light theme">☀</button>
-      <button type="button" data-theme-btn="dark" title="Dark theme">☾</button>
+      <button type="button" data-theme-btn="light" title="Light theme">☀</button>
+      <button type="button" data-theme-btn="dark" class="active" title="Dark theme">☾</button>
     </div>
   </div>
 </header>
 
 <main class="container doc-main reveal">
   <span class="project-index">01</span>
-  <h1 class="doc-title">S3 Static Website with CloudFront</h1>
+  <h1 class="doc-title">AWS Static Portfolio Deployment</h1>
   
-  <p class="doc-lead">Deployed a static portfolio on AWS with S3 and CloudFront for global delivery, Route 53 for DNS, and GitHub Actions for automated CI/CD on every push.</p>
+  <p class="doc-lead">Automated S3 uploads and CloudFront cache invalidation with GitHub Actions, using Route 53 to route traffic to the site.</p>
 
   <div class="project-tags">
     <span>S3</span><span>CloudFront</span><span>Route 53</span><span>GitHub Actions</span>
@@ -38,11 +38,11 @@
 
   <article class="doc-content">
     <h2>Overview</h2>
-    <p>This project hosts a fully static site on AWS with no application servers. Assets live in S3, CloudFront caches and serves them at the edge, and GitHub Actions builds and deploys on merge to main.</p>
+    <p>This project hosts a fully static site on AWS with no application servers. Assets live in S3, CloudFront caches and serves them at the edge, and GitHub Actions syncs files and invalidates the cache on pushes to main.</p>
     <h2>Architecture</h2>
     <ul>
       <li><strong>S3</strong> — private bucket; objects served only via CloudFront OAI/OAC</li>
-      <li><strong>CloudFront</strong> — HTTPS, compression, custom error pages for SPA-style routing if needed</li>
+      <li><strong>CloudFront</strong> — HTTPS delivery and a viewer-request function for clean project URLs</li>
       <li><strong>DynamoDB</strong> — serverless database, count number of visits</li>
       <li><strong>Route 53</strong> — alias record pointing the domain to the CloudFront distribution</li>
       <li><strong>ACM</strong> — TLS certificate in <code>us-east-1</code> for CloudFront</li>
@@ -59,7 +59,7 @@
     <ul>
       <li>Block all public S3 access; CloudFront is the only read path</li>
       <li>Versioned bucket optional for rollback; lifecycle rules control cost</li>
-      <li>Cache-Control headers on upload for long-lived static assets</li>
+      <li>Use OIDC to grant GitHub Actions temporary AWS deployment credentials</li>
     </ul>
 
     <h2>Outcomes</h2>
