@@ -992,7 +992,7 @@ h1.name em {
 #projects .project-page {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 2px;
 }
 #projects .project-page[hidden],
 #projects .project-pagination[hidden] {
