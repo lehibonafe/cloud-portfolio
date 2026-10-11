@@ -975,10 +975,23 @@ h1.name em {
 }
 .projects-list-grid .project-card > .project-name {
     margin: 0;
+    padding-top: 2px;
     font-size: 14px;
     font-weight: 600;
     line-height: 1.45;
     overflow-wrap: anywhere;
+}
+.projects-list-grid .project-name-with-icon {
+    display: grid;
+    grid-template-columns: max-content minmax(0, 1fr);
+    align-items: center;
+    column-gap: 8px;
+}
+.projects-list-grid .project-name-with-icon .preview-icon {
+    display: block;
+}
+.projects-list-grid .project-name-with-icon > span {
+    line-height: 24px;
 }
 .projects-list-grid .project-card > .project-desc {
     margin: 0;
