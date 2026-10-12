@@ -763,7 +763,7 @@ h1.name em {
     height: 9px;
     flex: 0 0 9px;
     margin-top: 5px;
-    border-radius: 50%;
+    border-radius: 2px;
     background: var(--text);
     position: relative;
     z-index: 1;
