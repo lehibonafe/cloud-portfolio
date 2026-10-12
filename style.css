@@ -426,8 +426,8 @@ h1.name em {
 .hero-ctas {
     display: flex;
     flex-wrap: wrap;
-    gap: 8px;
-    margin-top: 1px;
+    gap: 7px;
+
 }
 .hero-ctas img {
     width: 20px;
