@@ -167,7 +167,7 @@ body::after {
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     border: 2px solid var(--border);
-    border-radius: var(--radius-pill);
+    border-radius: 10px;
     padding: 2px;
     gap: 2px;
     position: relative;
@@ -965,7 +965,7 @@ h1.name em {
     width: 100%;
     min-width: 0;
     grid-template-columns: minmax(0, 1fr);
-    row-gap: 6px;
+    row-gap: 3px;
     min-height: 0;
     padding: 12px 14px;
 }
@@ -980,18 +980,6 @@ h1.name em {
     font-weight: 600;
     line-height: 1.45;
     overflow-wrap: anywhere;
-}
-.projects-list-grid .project-name-with-icon {
-    display: grid;
-    grid-template-columns: max-content minmax(0, 1fr);
-    align-items: center;
-    column-gap: 8px;
-}
-.projects-list-grid .project-name-with-icon .preview-icon {
-    display: block;
-}
-.projects-list-grid .project-name-with-icon > span {
-    line-height: 24px;
 }
 .projects-list-grid .project-card > .project-desc {
     margin: 0;
