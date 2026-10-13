@@ -220,41 +220,61 @@
                         <h2><i class="bi bi-layers"></i> Tech Stack</h2>
                     </div>
 
-                    <div class="stack-group">
-                        <h3>DevOps & Cloud</h3>
-                        <div class="stack-tags">
-                            <span>AWS</span><span>Docker</span
-                            ><span>GitHub Actions</span
-                            ><span>Terraform</span><span>Git</span
-                            ><span>Linux</span><span>Kubernetes</span>
+                    <div class="stack-groups">
+                        <div class="stack-group">
+                            <h3>DevOps & Cloud</h3>
+                            <div class="stack-tags">
+                                <span>AWS</span><span>Docker</span
+                                ><span>GitHub Actions</span
+                                ><span>Terraform</span><span>Git</span
+                                ><span>Linux</span><span>Kubernetes</span>
+                            </div>
+                        </div>
+
+                        <div class="stack-group">
+                            <h3>Scripting & Languages</h3>
+                            <div class="stack-tags">
+                                <span>Python</span>
+                                <span>Bash</span>
+                                <span>HTML</span>
+                                <span>CSS</span>
+                                <span>MySQL</span>
+                            </div>
+                        </div>
+
+                        <div class="stack-group">
+                            <h3>Others</h3>
+                            <div class="stack-tags">
+                                <span>Jira</span>
+                                <span>Grafana</span>
+                                <span>REST APIs</span>
+                                <span>Networking</span>
+                                <span>Codex</span>
+                                <span>RAG</span>
+                                <span>LLM</span>
+                            </div>
                         </div>
                     </div>
+                </section>
 
-                    <div class="stack-group">
-                        <h3>Scripting & Languages</h3>
-                        <div class="stack-tags">
-                            <span>Python</span>
-                            <span>Bash</span>
-                            <span>HTML</span>
-                            <span>CSS</span>
-                            <span>MySQL</span>
-
-                        </div>
+                <section id="terminal" class="terminal-section terminal-window reveal" aria-label="Interactive terminal">
+                    <div class="terminal-bar">
+                        <span class="terminal-dots" aria-hidden="true">
+                            <span></span><span></span><span></span>
+                        </span>
+                        <span class="terminal-location">CLI</span>
+                        <span class="terminal-mode">type help</span>
                     </div>
-
-                    <div class="stack-group">
-                        <h3>Others</h3>
-                        <div class="stack-tags">
-                            <span>Jira</span>
-                            <span>Grafana</span>
-                            <span>REST APIs</span>
-                            <span>Networking</span>
-                            <span>Codex</span>
-                            <span>RAG</span>
-                            <span>LLM</span>
-                        </div>
+                    <div class="terminal-body">
+                        <div class="terminal-history" role="log" aria-label="Terminal output" aria-live="polite"></div>
+                        <form class="terminal-form" autocomplete="off">
+                            <span aria-hidden="true">$</span>
+                            <span class="terminal-input-wrap">
+                                <input type="text" name="command" aria-label="Terminal command" autocapitalize="off" autocomplete="off" enterkeyhint="go" spellcheck="false" maxlength="120" />
+                                <span class="terminal-cursor" aria-hidden="true"></span>
+                            </span>
+                        </form>
                     </div>
-
                 </section>
 
                 <section id="projects" class="projects-section reveal">
@@ -505,5 +525,6 @@
         </footer>
 
         <script src="script.js"></script>
+        <script src="terminal.js"></script>
     </body>
 </html>

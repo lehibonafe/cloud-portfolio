@@ -562,7 +562,7 @@ h1.name em {
     grid-template-areas:
         "about about experience"
         "education education experience"
-        "tech-stack tech-stack tech-stack"
+        "tech-stack tech-stack terminal"
         "projects projects certs"
         "footer-row footer-row footer-row";
 }
@@ -577,7 +577,8 @@ h1.name em {
 #about { grid-area: about; }
 #education { grid-area: education; }
 #experience { grid-area: experience; align-self: stretch; }
-#stack { grid-area: tech-stack; }
+#stack { grid-area: tech-stack; align-self: stretch; }
+#terminal { grid-area: terminal; align-self: start; }
 #projects { grid-area: projects; align-self: stretch; }
 #certs-logos { grid-area: certs; align-self: stretch; }
 #events { align-self: stretch; }
@@ -675,6 +676,9 @@ h1.name em {
     transform: translateY(-3px);
     box-shadow: var(--shadow-hover);
 }
+.stack-groups {
+    min-width: 0;
+}
 .stack-group {
     margin-bottom: 18px;
 }
@@ -707,6 +711,164 @@ h1.name em {
     background: var(--accent-soft);
     transform: translateY(-2px);
     box-shadow: var(--shadow);
+}
+.terminal-window {
+    display: flex;
+    flex-direction: column;
+    height: 320px;
+    min-width: 0;
+    overflow: hidden;
+    cursor: text;
+    background: var(--card);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow);
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 12px;
+    line-height: 1.55;
+    transition:
+        transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+        box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.terminal-window:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-hover);
+}
+.terminal-bar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 9px 12px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text-muted);
+    font-size: 11px;
+}
+.terminal-location {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.terminal-mode {
+    margin-left: auto;
+    color: var(--text-soft);
+    flex-shrink: 0;
+}
+.terminal-dots {
+    display: inline-flex;
+    gap: 4px;
+}
+.terminal-dots span {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--text-muted);
+    opacity: 0.55;
+}
+.terminal-body {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    min-height: 0;
+    padding: 14px;
+}
+.terminal-history {
+    max-height: 210px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+}
+.terminal-block + .terminal-block {
+    margin-top: 14px;
+}
+.terminal-command {
+    color: var(--text);
+    font-weight: 600;
+}
+.terminal-command span,
+.terminal-form > span:first-child {
+    color: var(--text);
+    background: transparent;
+}
+.terminal-command span {
+    margin-right: 5px;
+}
+.terminal-output {
+    padding-left: 15px;
+    color: var(--text-soft);
+    overflow-wrap: anywhere;
+    white-space: pre-wrap;
+}
+.terminal-projects {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+.terminal-list {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+.terminal-folder {
+    color: var(--text);
+}
+.terminal-projects a {
+    color: var(--text-soft);
+    cursor: pointer;
+    text-decoration: underline;
+    text-decoration-color: var(--text-muted);
+    text-underline-offset: 3px;
+}
+.terminal-projects a:hover,
+.terminal-projects a:focus-visible {
+    color: var(--text);
+    text-decoration-color: currentColor;
+}
+.terminal-projects a:focus-visible {
+    outline: 2px solid var(--text);
+    outline-offset: 3px;
+}
+.terminal-form {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    color: var(--text-muted);
+}
+.terminal-history:not(:empty) + .terminal-form {
+    margin-top: 14px;
+}
+.terminal-input-wrap {
+    position: relative;
+    flex: 1;
+    min-width: 0;
+}
+.terminal-form input {
+    display: block;
+    width: 100%;
+    min-width: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    color: var(--text);
+    caret-color: transparent;
+    font: inherit;
+}
+.terminal-cursor {
+    position: absolute;
+    bottom: 2px;
+    left: 0;
+    display: block;
+    width: 1ch;
+    height: 2px;
+    background: var(--text);
+    pointer-events: none;
+    animation: terminalBlink 1s linear infinite;
+}
+@keyframes terminalBlink {
+    0%, 49.9% { opacity: 1; }
+    50%, 100% { opacity: 0; }
 }
 
 /* ===== RIGHT COLUMN ===== */
@@ -1269,6 +1431,7 @@ footer {
 [data-theme="dark"] .theme-toggle,
 [data-theme="dark"] .about-section,
 [data-theme="dark"] .stack-section,
+[data-theme="dark"] .terminal-section,
 [data-theme="dark"] .projects-section,
 [data-theme="dark"] .project-card,
 [data-theme="dark"] #experience,
@@ -1468,6 +1631,7 @@ footer {
             "education"
             "experience"
             "tech-stack"
+            "terminal"
             "projects"
             "certs"
             "footer-row";
